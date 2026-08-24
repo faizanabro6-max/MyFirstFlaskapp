@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for,session,flash
+from flask import Blueprint, render_template, request, redirect, url_for,session,flash,abort
 from models import Post,User
 from extensions import db
 from decorators import login_required
@@ -63,8 +63,7 @@ def edit_post(id):
 
     user_id = session.get("user_id")
     if post.user_id != user_id:
-        print("NOT OWNER")
-        return "You are not allowed to edit this post", 403
+     abort(403)
 
     if request.method == "POST":
         print("POST REQUEST")

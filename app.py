@@ -7,6 +7,8 @@ from users import users_bp
 from main import main
 from dotenv import load_dotenv
 import os
+from errors import errors
+
 
 load_dotenv()
 
