@@ -1,0 +1,11 @@
+{% for user in users %}
+    <p>
+        {{ user.id }} -
+        {{ user.username }} -
+        {{ user.email }}
+
+        <a href="{{ url_for('users.delete_user', id=user.id) }}">
+            Delete
+        </a>
+    </p>
+{% endfor %}

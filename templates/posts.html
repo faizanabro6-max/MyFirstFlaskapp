@@ -1,0 +1,29 @@
+{% for post in posts %}
+
+    <div>
+        <h2>{{ post.title }}</h2>
+
+        <p>Post ID: {{ post.id }}</p>
+
+        <p>{{ post.content }}</p>
+
+        <p>
+            Written by: {{ post.user.username }}
+        </p>
+
+        {% if post.user_id == session.get("user_id") %}
+            <a href="{{ url_for('posts.edit_post', id=post.id) }}">Edit</a>
+
+            <form action="{{ url_for('posts.delete_post', id=post.id) }}" method="post">
+                <button>Delete</button>
+            </form>
+        {% endif %}
+    </div>
+
+    <hr>
+
+{% else %}
+
+    <p>No Posts Available Yet.</p>
+
+{% endfor %}

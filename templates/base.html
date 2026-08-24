@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Flask Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <nav>
+    <a href="/">Home</a>
+    <a href="/about/Faizan">About</a>
+    <a href="/contact">Contact</a>
+    {% if session.get("username") %}
+    <span>Welcome {{ session.get("username") }}</span>
+    <a href="/logout">Logout</a>
+    {% endif %}
+
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% for category, message in messages %}
+        <p>{{ category }}: {{ message }}</p>
+    {% endfor %}
+
+        {% endwith %}
+    {% block content %}
+    {% endblock %}
+
+    {% if messages %}     
+        {% for category, message in messages %}     
+        {% if category =="success" %}     
+        <p>{{message}}</p>    
+        {% elif category =="error" %}    
+        <p>{{message}} </p>    
+        {% else %}    
+        <p>{{message}}</p>    
+        {% endif %}    
+        {% endfor %}    
+        {% endif %}    
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Welcome {{ name }}</h1>
+
+<p>Course: {{ course }}</p>
+
+{% if name == "Faizan" %}
+    <p>Welcome, special student!</p>
+{% else %}
+    <p>Welcome, student!</p>
+{% endif %}
+
+<h2>Students</h2>
+
+{% for student in students %}
+    {% if student == "Faizan" %}
+        <p>{{ loop.index }}. {{ student }} - Special Student</p>
+    {% else %}
+        <p>{{ loop.index }}. {{ student }}</p>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}
